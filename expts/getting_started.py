@@ -38,7 +38,7 @@ if __name__ == "__main__":
         job_params: JobParams = {
             "id": n,
             "print_time": 10,
-            "submitted_at": int(rng.integers(0, 24*60)),
+            "submitted_at": int(rng.integers(0, 24 * 60)),
             "completed_at": -1,
             "manufactured_by": -1,
             "selected_at": -1,
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     # Runtime (in mins)
     # Note. no shuffling of machines or jobs.
-    for i in range(0, 24*60):
+    for i in range(0, 24 * 60):
         for m in machines:
             m.next()
         for j in jobs:

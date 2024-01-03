@@ -23,30 +23,11 @@ if __name__ == "__main__":
     # Creating the machines
     machines: List[Machine] = []
 
-    m = Machine(id=n, logic=logics.frfs, debug=False)
-    n += 1
-    m.connect()
-    machines.append(m)
-
-    m = Machine(id=n, logic=logics.fcfs, debug=False)
-    n += 1
-    m.connect()
-    machines.append(m)
-
-    m = Machine(id=n, logic=logics.randomly_select, debug=False)
-    n += 1
-    m.connect()
-    machines.append(m)
-
-    m = Machine(id=n, logic=logics.spt, debug=False)
-    n += 1
-    m.connect()
-    machines.append(m)
-
-    m = Machine(id=n, logic=logics.lpt, debug=False)
-    n += 1
-    m.connect()
-    machines.append(m)
+    for i in range(0, 20):
+        m = Machine(id=n, logic=logics.lpt, debug=False)
+        n += 1
+        m.connect()
+        machines.append(m)
 
     # Creating a demand profile using π as a seed
 
@@ -65,7 +46,7 @@ if __name__ == "__main__":
         submission_time += pi[i] * 20
         if submission_time > 30 * 24 * 60:  # 30 days
             break
-        n_jobs = int(pi[i + 1000] * 0.4)
+        n_jobs = int(pi[i + 1000] * 1.3)
         remainder = submission_time % (24 * 60)
         if remainder > 9 * 60 and remainder < 17 * 60:
             # print(f"Time: {submission_time} adding {n_jobs} jobs")
@@ -87,6 +68,7 @@ if __name__ == "__main__":
                 )
                 job.connect()
                 jobs.append(job)
+
     print(
         f"Total number of jobs: {len(jobs)}. Total print time: {total_print_time}"
     )
@@ -102,7 +84,7 @@ if __name__ == "__main__":
         clock.tick()
 
     # Write out the results
-    with open("out/broker.json", "wt") as f:
+    with open("out/worst_case_broker.json", "wt") as f:
         details = {
             "messages_sent": broker.messages_sent,
             "messages_received": broker.messages_received,
@@ -110,7 +92,7 @@ if __name__ == "__main__":
         f.write(json.dumps(details))
 
     machines.sort(key=lambda x: x.id)
-    with open("out/machines.json", "wt") as f:
+    with open("out/worst_case_machines.json", "wt") as f:
         f.write("[\n")
         for i, m in enumerate(machines):
             details = {
@@ -127,7 +109,7 @@ if __name__ == "__main__":
                 f.write(json.dumps(details) + "\n]")
 
     jobs.sort(key=lambda x: x.id)
-    with open("out/jobs.json", "wt") as f:
+    with open("out/worst_case_jobs.json", "wt") as f:
         f.write("[\n")
         for i, j in enumerate(jobs):
             if i != len(jobs) - 1:

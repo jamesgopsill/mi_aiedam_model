@@ -44,7 +44,7 @@ class Machine(BaseAgent):
             case MachineStateEnum.AVAILABLE:
                 # If the time is between 9am and 5pm
                 remainder = self._clock.now % (24 * 60)
-                if remainder > 9*60 and remainder < 17*60:
+                if remainder > 9 * 60 and remainder < 17 * 60:
                     self._machine_is_available()
             case MachineStateEnum.WAITING_FOR_RESPONSES:
                 self._machine_is_waiting_for_responses()

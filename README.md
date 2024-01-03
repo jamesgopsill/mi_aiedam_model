@@ -1,4 +1,4 @@
-# Mode used for my paper "Optimal configurations of Minimally Intelligent additive manufacturing machines for Makerspace production environments"
+# Model used in my paper "Optimal configurations of Minimally Intelligent additive manufacturing machines for Makerspace production environments"
 
 Create a virtual environment.
 
