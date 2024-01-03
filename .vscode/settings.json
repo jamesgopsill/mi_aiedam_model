@@ -1,0 +1,16 @@
+{
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "isort.args":["--profile", "black"],
+    "black-formatter.args": [
+        "--line-length",
+        "79"
+    ],
+}
